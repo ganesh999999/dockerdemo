@@ -18,7 +18,7 @@ public class DockerController {
 	
 	@GetMapping
 	public String getString() {
-		return "it is working fine with webhook";
+		return "it is working fine with webhook (autobuild)";
 	}
 	
 	@GetMapping("/employeeOutById/{id}")
