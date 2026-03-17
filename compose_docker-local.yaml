@@ -1,0 +1,17 @@
+services:
+  springboot-app:
+    build: .
+    container_name: springboot-app
+    ports:
+      - "8080:8082"
+    networks:
+      - springboot-network
+    environment:
+      SPRING_DATASOURCE_URL: jdbc:mysql://host.docker.internal:3306/org_db?useSSL=false&allowPublicKeyRetrieval=true
+      SPRING_DATASOURCE_USERNAME: ganesh
+      SPRING_DATASOURCE_PASSWORD: Ganesh@sgx143
+      SPRING_JPA_HIBERNATE_DDL_AUTO: none  # Don't recreate tables
+      SPRING_JPA_SHOW_SQL: true
+
+networks:
+  springboot-network:
