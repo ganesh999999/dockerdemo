@@ -5,20 +5,15 @@ pipeline {
 
         stage('Clone Code') {
             steps {
+                deleteDir()
                 git branch: 'main', url: 'https://github.com/ganesh999999/dockerdemo.git'
             }
         }
 
-        stage('Build Docker Image') {
+        stage('Deploy') {
             steps {
-                sh 'docker compose build'
-            }
-        }
-
-        stage('Run Containers') {
-            steps {
-                sh 'docker compose down'
-                sh 'docker compose up -d'
+                sh 'docker-compose down || true'
+                sh 'DOCKER_BUILDKIT=0 docker-compose up --build -d'
             }
         }
     }
